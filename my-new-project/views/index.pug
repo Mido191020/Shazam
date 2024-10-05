@@ -1,0 +1,15 @@
+//- extends layout
+
+//- block content
+//-   h1 Upload a File
+//-   form(action="/upload", method="POST", enctype="multipart/form-data")
+//-     input(type="file", name="file", required)
+//-     button(type="submit") Upload
+extends layout
+
+block content
+  h1= title
+  form(action="/upload", method="POST", enctype="multipart/form-data")
+    input(type="file", name="file", accept="image/*,video/*", required)
+    button(type="submit") Upload
+ 

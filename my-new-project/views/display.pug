@@ -1,0 +1,19 @@
+//- extends layout
+
+//- block content
+//-   h1 Uploaded File
+//-   img(src=`/uploads/${filename}`, alt='Uploaded Image', style='max-width: 500px;')
+//-   p File Name: #{filename}
+//-   a(href='/') Go Back
+extends layout
+
+block content
+  h1 Uploaded File
+  if fileType === 'image'
+    img(src=`/uploads/${filename}`, alt='Uploaded Image', style='max-width: 500px;')
+  else if fileType === 'video'
+    video(src=`/uploads/${filename}`, controls, style='max-width: 500px;')
+  else
+    p Unsupported file type: #{fileType}
+  p File Name: #{filename}
+  a(href='/') Upload Another File
