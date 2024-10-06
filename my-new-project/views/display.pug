@@ -1,19 +1,23 @@
-//- extends layout
+doctype html
+html
+  head
+    title= 'Uploaded File'
+  body
+    h1 Uploaded File
+    case fileType
+      when 'image'
+        img(src=filePath, alt=filename, style='max-width: 500px;')
+      when 'video'
+        video(width='320', height='240', controls)
+          source(src=filePath, type=`video/${fileExtension}`)
+      when 'audio'
+        audio(controls)
+          source(src=filePath, type=`audio/${fileExtension}`)
+      when 'pdf'
+        embed(src=filePath, type="application/pdf", width="100%", height="600px")
+      default
+        p File type: #{fileType}
+        a(href=filePath, download=filename) Download file
 
-//- block content
-//-   h1 Uploaded File
-//-   img(src=`/uploads/${filename}`, alt='Uploaded Image', style='max-width: 500px;')
-//-   p File Name: #{filename}
-//-   a(href='/') Go Back
-extends layout
-
-block content
-  h1 Uploaded File
-  if fileType === 'image'
-    img(src=`/uploads/${filename}`, alt='Uploaded Image', style='max-width: 500px;')
-  else if fileType === 'video'
-    video(src=`/uploads/${filename}`, controls, style='max-width: 500px;')
-  else
-    p Unsupported file type: #{fileType}
-  p File Name: #{filename}
-  a(href='/') Upload Another File
+    p File Name: #{filename}
+    a(href='/') Upload another file
